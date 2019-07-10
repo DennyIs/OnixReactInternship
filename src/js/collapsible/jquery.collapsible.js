@@ -6,7 +6,7 @@
 * This content is released under the MIT license
 * http://opensource.org/licenses/MIT
 */
-
+import jQuery from 'jquery'
 (function($, undefined) {
     $.fn.collapsible = function(options) {
 
