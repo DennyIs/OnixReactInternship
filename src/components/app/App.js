@@ -1,25 +1,42 @@
 import React from 'react';
-import './App.css';
-import Logo from './img/logo.png';
-import rect1 from './img/rect1.png';
-import serv1 from './img/serv1.png';
-import serv2 from './img/serv2.png';
-import serv3 from './img/serv3.png';
-import serv4 from './img/serv4.png';
-import alarm from './img/alarm.png';
-import line_graph from './img/line_graph.png';
-import computer from './img/computer.png';
-import book from './img/book.png';
-import home from './img/home.png';
-import image from './img/image.png';
-import picture from './img/picture.png';
-import equalizer from './img/equalizer.png';
-import bullseye from './img/bullseye.png';
-import pin from './img/pin.png';
-import octocat from './img/octocat.png';
-import menu from './js/menu.js';
-import collapsible from './js/collapsible/jquery.collapsible.js';
+import '../../assets/components/app/App.css';
+import Logo from '../../assets/components/img/logo.png';
+import rect1 from '../../assets/components/img/rect1.png';
+import serv1 from '../../assets/components/img/serv1.png';
+import serv2 from '../../assets/components/img/serv2.png';
+import serv3 from '../../assets/components/img/serv3.png';
+import serv4 from '../../assets/components/img/serv4.png';
+import alarm from '../../assets/components/img/alarm.png';
+import line_graph from '../../assets/components/img/line_graph.png';
+import computer from '../../assets/components/img/computer.png';
+import book from '../../assets/components/img/book.png';
+import home from '../../assets/components/img/home.png';
+import image from '../../assets/components/img/image.png';
+import picture from '../../assets/components/img/picture.png';
+import equalizer from '../../assets/components/img/equalizer.png';
+import bullseye from '../../assets/components/img/bullseye.png';
+import pin from '../../assets/components/img/pin.png';
+import octocat from '../../assets/components/img/octocat.png';
 
+const top_menu = 'Home',
+top_menu1 = 'About',
+top_menu2 = 'Srvices',
+top_menu3 = 'Design';
+
+const top_menu_href = 'main',
+top_menu_href1 = 'about',
+top_menu_href2 = 'services',
+top_menu_href3 = 'design';
+
+const header_button = 'Learn More',
+header_button_href = 'about;'
+
+const footer_text = 'Original layout',
+footer_href = 'http://psd-html-css.ru/templates/mogo-besplatnyy-psd-shablon-lendingovoy-stranicy',
+footer_text1 = 'Designed by',
+author_name = 'DENIS KONONCHENKO',
+github = 'GitHub',
+github_href = 'https://github.com/DennyIs/OnixReactInternship';
 
 function App() {
   return (
@@ -30,10 +47,10 @@ function App() {
                   <img src={Logo} className="logo" alt="Logo"/>
                   <nav>
                       <ul className="menu-main">
-                          <li><a href="#main">Home</a></li>
-                          <li><a href="#about">About</a></li>
-                          <li><a href="#services">Services</a></li>
-                          <li><a href="#design">Design</a></li>
+                          <li><a href={'#' + top_menu_href}>{top_menu}</a></li>
+                          <li><a href={'#' + top_menu_href1}>{top_menu1}</a></li>
+                          <li><a href={'#' + top_menu_href2}>{top_menu2}</a></li>
+                          <li><a href={'#' + top_menu_href3}>{top_menu3}</a></li>
                       </ul>
                   </nav>
               </div>
@@ -45,7 +62,7 @@ function App() {
                   Welcome to MoGo
               </h1>
           </div>
-          <a className="button" href="#about">Learn more</a>
+           <a className="button" href={'#' + header_button_href}>{header_button}</a>
       </div>
     </header>
     <section id="about">
@@ -188,24 +205,24 @@ function App() {
     <div className="container">
         <div className="footer title">
             <p>
-                Designed by 
+                {footer_text1} 
             </p>
             <h2>
-                Denis Kononchenko
+                {author_name}
             </h2>   
         </div>  
         <div className="footer title">
             <p>
-                Original layout
+                {footer_text}
             </p>
-            <a href="http://psd-html-css.ru/templates/mogo-besplatnyy-psd-shablon-lendingovoy-stranicy">Layout</a>   
+            <a href={footer_href}>Layout</a>   
         </div>  
         <div className="footer title">
             <p>
-                GitHub
+                {github}
             </p>
             <h2>
-                <a href="https://github.com/DennyIs/OnixReactInternship"><img src={octocat} alt="Icon"/></a>   
+                <a href={github_href}><img src={octocat} alt="Icon"/></a>   
             </h2>   
         </div> 
     </div>
