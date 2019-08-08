@@ -17,6 +17,7 @@ import equalizer from '../../assets/components/img/equalizer.png';
 import bullseye from '../../assets/components/img/bullseye.png';
 import pin from '../../assets/components/img/pin.png';
 import octocat from '../../assets/components/img/octocat.png';
+import Biography from '../biography/Biography'   
 
 const top_menu = 'Home',
 top_menu1 = 'About',
@@ -37,6 +38,9 @@ footer_text1 = 'Designed by',
 author_name = 'DENIS KONONCHENKO',
 github = 'GitHub',
 github_href = 'https://github.com/DennyIs/OnixReactInternship';
+
+
+
 
 function App() {
   return (
@@ -65,6 +69,18 @@ function App() {
            <a className="button" href={'#' + header_button_href}>{header_button}</a>
       </div>
     </header>
+    <section id="biography">
+        <div className="title" id="#biography">
+            <div>
+                Biography
+            </div>
+            <h2>
+                Story about me
+            </h2>
+            <img src={rect1} alt="rectangle"/>
+        </div>
+        <Biography/>  
+    </section>
     <section id="about">
         <div className="title" id="#about">
             <div>
