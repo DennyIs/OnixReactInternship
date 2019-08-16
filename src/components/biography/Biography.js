@@ -6,57 +6,69 @@ class Biography extends Component {
 	    this.state = {
 	        sortedByFunc: false,
 	        sortedByBubble: false,
-	        events: [
-	            {
-	                date: "1996",
-	                event: "Год рождения"
-	            },
-	            {
-	                date: "2002",
-	                event: "Начало учебы в школе"
-	            },
-	            {
-	                date: "2011",
-	                event: "Закончил школу и поступил в колледж"
-	            },
-	            {
-	                date: "2015",
-	                event: "Закончил колледж"
-	            },
-	            {
-	                date: "2015",
-	                event: "Начал обудение в КНТУ"
-	            },
-	            {
-	                date: "2018",
-	                event: "Начал учить программирование"
-	            },
-	            {
-	                date: "2018",
-	                event: "Окончил бакалаврат и перешел на магистратуру"
-	            }
-	        ],
-	    };
-	}
+	        events:
+                {
+                	0:
+						{
+							date: "1996",
+							event: "Год рождения"
+						},
+					1:
+						{
+							date: "2002",
+							event: "Начало учебы в школе"
+						},
+					2:
+						{
+							date: "2011",
+							event: "Закончил школу и поступил в колледж"
+						},
+					3:
+						{
+							date: "2015",
+							event: "Закончил колледж"
+						},
+					4:
+						{
+							date: "2015",
+							event: "Начал обудение в КНТУ"
+						},
+					5:
+						{
+							date: "2018",
+							event: "Начал учить программирование"
+						},
+					6:
+						{
+							date: "2018",
+							event: "Окончил бакалаврат и перешел на магистратуру"
+						}
+				}
+	    	};
+		}
 
 	sortFunction = () => {
-		const updEvents = this.state.events.slice(0);
+		const updEvents = {...this.state.events};
 		const updSort = this.state.sortFunction;
+		let sort;
 		if (updSort) {
-	            updEvents.sort((a, b) => ((+a.date) - (+b.date)));
+	            sort = Object.values(updEvents).sort((a, b) => ((+a.date) - (+b.date)));
 	        } else {
-	            updEvents.reverse();
+            sort = Object.values(updEvents).reverse();
 	        }
+	        for (let key in Object.keys(updEvents)){
+	        	updEvents[key] = sort[key];
+			}
 	    this.setState({
 	    	events: updEvents,
 	    	sortFunction: !updSort
 	    })
 	};
 
-	bubbleSort = () =>
-	{
-        const updEvents = this.state.events.slice(0);
-        for (let i = updEvents.length - 1; i >= 0; i--) {
+    bubbleSort = () => {
+        const updEvents = {...this.state.events};
+        const keys = Object.keys(updEvents);
+        for (let i = keys.length - 1; i >= 0; i--) {
             for (let j = 0; j < i; j++) {
                 let cur = updEvents[j];
                 let prev = updEvents[j + 1];
@@ -69,18 +81,27 @@ class Biography extends Component {
             }
         }
         this.setState({
-            events: updEvents
+            events: updEvents,
         })
 	};
 
 	insertElement =() =>{
-        const updEvents = this.state.events.slice(0);
+        const updEvents = {...this.state.events};
 		const date = document.getElementById('field1').value;
         const events = document.getElementById('field2').value;
-		updEvents.push({
+        if (!date || !events) {
+            return;
+        }
+        if (isNaN(date)) {
+            return;
+        }
+        if (date <= 1990 || date >= 3000) {
+            return;
+        }
+		updEvents[Object.keys(updEvents).length] = {
 			 date: date,
 	         event: events
-		});
+		};
 		this.setState({
 			events: updEvents
 		})
@@ -88,12 +109,16 @@ class Biography extends Component {
 
 
 	deleteElement = () =>{
-		const updEvents = this.state.events.slice(0);
-		updEvents.pop();
+		const updEvents = {...this.state.events};
+        let index = Object.keys(updEvents).length;
+        delete updEvents[index - 1];
+        
 		this.setState({
 			events: updEvents
 		})
 	};
+
+
 
 
 	renderTable(data){
@@ -104,7 +129,9 @@ class Biography extends Component {
 	                    <th onClick={this.sortFunction}>Year<br/></th>
 	                    <th onClick={this.bubbleSort}>Event<br/></th>
 	                </tr>
-	                {data.map((row, index) => this.renderRow(row, index))}
+					{
+                    Object.entries(data).map(([index, row]) => this.renderRow(row, index))
+                    }
 	                </tbody>
 			</table>
 			)
@@ -117,6 +144,7 @@ class Biography extends Component {
 	        <tr key={index}>
 	            <td className="date">{row.date}</td>
 	            <td className="event">{row.event}</td>
+				<td><input type="button"  className="button1" value="Удалить" onClick={this.deleteElement[index]}/></td>
 	        </tr>
 	        
 	    )
