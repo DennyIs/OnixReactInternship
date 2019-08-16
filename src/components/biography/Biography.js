@@ -90,12 +90,15 @@ class Biography extends Component {
 		const date = document.getElementById('field1').value;
         const events = document.getElementById('field2').value;
         if (!date || !events) {
+        	alert('Заполните поля');
             return;
         }
         if (isNaN(date)) {
+            alert('Впишите дату');
             return;
         }
         if (date <= 1990 || date >= 3000) {
+            alert('Дата должна быть больше 1990 и меньше 3000');
             return;
         }
 		updEvents[Object.keys(updEvents).length] = {
@@ -108,15 +111,14 @@ class Biography extends Component {
 	};
 
 
-	deleteElement = () =>{
-		const updEvents = {...this.state.events};
-        let index = Object.keys(updEvents).length;
-        delete updEvents[index - 1];
-        
-		this.setState({
-			events: updEvents
-		})
-	};
+    deleteElement = (index) =>{
+        const updEvents = {...this.state.events};
+        delete updEvents[index];
+
+        this.setState({
+            events: updEvents
+        })
+    };
 
 
 
@@ -137,16 +139,16 @@ class Biography extends Component {
 			)
 	};
 
-		
-	 
+
+
 	renderRow(row, index) {
 	    return (
 	        <tr key={index}>
 	            <td className="date">{row.date}</td>
 	            <td className="event">{row.event}</td>
-				<td><input type="button"  className="button1" value="Удалить" onClick={this.deleteElement[index]}/></td>
+				<td><input type="button"  className="button1" value="Удалить" onClick={this.deleteElement.bind(this, index)}/></td>
 	        </tr>
-	        
+
 	    )
 	};
 
@@ -154,17 +156,16 @@ class Biography extends Component {
     render() {
         return (
             <div className="content">
-               {this.renderTable(this.state.events)} 
+               {this.renderTable(this.state.events)}
                <div className="button">
 	                <div class="input_block">
 				        <input type="text"  id="field1" className="fields" placeholder="date"/>
 				        <input type="text"  id="field2" className="fields" placeholder="event"/>
 			        </div>
                     <input type="button" className="button1" value="Добавить" onClick={this.insertElement}/>
-                    <input type="button"  className="button1" value="Удалить" onClick={this.deleteElement}/>
                 </div>
     		</div>
         );
     };
 };
-export default Biography; 
+export default Biography;
