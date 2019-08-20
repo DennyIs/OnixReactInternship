@@ -17,7 +17,9 @@ import equalizer from '../../assets/components/img/equalizer.png';
 import bullseye from '../../assets/components/img/bullseye.png';
 import pin from '../../assets/components/img/pin.png';
 import octocat from '../../assets/components/img/octocat.png';
-import Biography from '../biography/Biography'   
+import Biography from '../biography/Biography'
+import Weather from '../weather/Weather'
+
 
 const top_menu = 'Home',
 top_menu1 = 'About',
@@ -208,6 +210,9 @@ function App() {
             </div>
             </div>
     </section>
+        <section>
+            <Weather/>
+        </section>
     <section>
         <div className="map">
             <div className="map_content">

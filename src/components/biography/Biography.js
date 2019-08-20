@@ -6,6 +6,8 @@ class Biography extends Component {
 	    this.state = {
 	        sortedByFunc: false,
 	        sortedByBubble: false,
+			insertDate: '',
+			insertEvent: '',
 	        events:
                 {
                 	0:
@@ -85,31 +87,38 @@ class Biography extends Component {
         })
 	};
 
+    updateEvent = (event) =>{
+            const { target : {id, value} } = event;
+            this.setState({
+                [id]: value
+            })
+        };
+
 	insertElement =() =>{
         const updEvents = {...this.state.events};
-		const date = document.getElementById('field1').value;
-        const events = document.getElementById('field2').value;
-        if (!date || !events) {
+		const insertDate = this.state.insertDate;
+        const insertEvent = this.state.insertEvent;
+        if (!insertDate || !insertEvent) {
         	alert('Заполните поля');
             return;
         }
-        if (isNaN(date)) {
-            alert('Впишите дату');
+        if (isNaN(insertDate)) {
+            alert('Введите дату');
             return;
         }
-        if (date <= 1990 || date >= 3000) {
+        if (insertDate <= 1990 || insertDate >= 3000) {
             alert('Дата должна быть больше 1990 и меньше 3000');
             return;
         }
 		updEvents[Object.keys(updEvents).length] = {
-			 date: date,
-	         event: events
+			 date: insertDate,
+	         event: insertEvent
 		};
-		this.setState({
-			events: updEvents
-		})
+        this.setState({
+            events: updEvents,
+        });
+		console.log(insertDate, insertEvent);
 	};
-
 
     deleteElement = (index) =>{
         const updEvents = {...this.state.events};
@@ -119,9 +128,6 @@ class Biography extends Component {
             events: updEvents
         })
     };
-
-
-
 
 	renderTable(data){
 		return(
@@ -139,8 +145,6 @@ class Biography extends Component {
 			)
 	};
 
-
-
 	renderRow(row, index) {
 	    return (
 	        <tr key={index}>
@@ -152,20 +156,19 @@ class Biography extends Component {
 	    )
 	};
 
-
     render() {
         return (
             <div className="content">
                {this.renderTable(this.state.events)}
                <div className="button">
-	                <div class="input_block">
-				        <input type="text"  id="field1" className="fields" placeholder="date"/>
-				        <input type="text"  id="field2" className="fields" placeholder="event"/>
+	                <div className="input_block">
+				        <input type="text"  id="insertDate"  onChange={this.updateEvent} className="fields" placeholder="date"/>
+				        <input type="text"  id="insertEvent"  onChange={this.updateEvent} className="fields" placeholder="event"/>
 			        </div>
                     <input type="button" className="button1" value="Добавить" onClick={this.insertElement}/>
                 </div>
     		</div>
         );
     };
-};
+}
 export default Biography;
