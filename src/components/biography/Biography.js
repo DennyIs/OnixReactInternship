@@ -117,7 +117,7 @@ class Biography extends Component {
         this.setState({
             events: updEvents,
         });
-		console.log(insertDate, insertEvent);
+
 	};
 
     deleteElement = (index) =>{
