@@ -8,44 +8,48 @@ class Biography extends Component {
 	        sortedByBubble: false,
 			insertDate: '',
 			insertEvent: '',
+			startIndex: null,
+			finishIndex: null,
+            imageStatus: 'loading',
+            imgSrc: 'https://i.gifer.com/72gi.gif',
 	        events:
                 {
                 	0:
-						{
-							date: "1996",
-							event: "Год рождения"
-						},
+					{
+						date: "1996",
+						event: "Год рождения"
+					},
 					1:
-						{
-							date: "2002",
-							event: "Начало учебы в школе"
-						},
+					{
+						date: "2002",
+						event: "Начало учебы в школе"
+					},
 					2:
-						{
-							date: "2011",
-							event: "Закончил школу и поступил в колледж"
-						},
+					{
+						date: "2011",
+						event: "Закончил школу и поступил в колледж"
+					},
 					3:
-						{
-							date: "2015",
-							event: "Закончил колледж"
-						},
+					{
+						date: "2015",
+						event: "Закончил колледж"
+					},
 					4:
-						{
-							date: "2015",
-							event: "Начал обудение в КНТУ"
-						},
+					{
+						date: "2015",
+						event: "Начал обудение в КНТУ"
+					},
 					5:
-						{
-							date: "2018",
-							event: "Начал учить программирование"
-						},
+					{
+						date: "2018",
+						event: "Начал учить программирование"
+					},
 					6:
-						{
-							date: "2018",
-							event: "Окончил бакалаврат и перешел на магистратуру"
-						}
-				}
+					{
+						date: "2018",
+						event: "Окончил бакалаврат и перешел на магистратуру"
+					}
+   				 },
 	    	};
 		}
 
@@ -129,8 +133,32 @@ class Biography extends Component {
         })
     };
 
+    handleImageLoaded() {
+        this.setState({ imageStatus: "Loaded" });
+    }
+
+    handleImageError() {
+        this.setState({ imageStatus: "failed to load" });
+    }
+
 	renderTable(data){
 		return(
+
+            <div>
+                <div className="gif_item">
+
+                    <img className="gif"
+                         src={this.state.imgSrc}
+                         onLoad={this.handleImageLoaded.bind(this)}
+                         onError={this.handleImageError.bind(this)}
+                    />
+                    <div>
+                        {this.state.imageStatus}
+                    </div>
+
+                </div>
+
+
 			<table>
 				<tbody>
 	                <tr>
@@ -142,30 +170,88 @@ class Biography extends Component {
                     }
 	                </tbody>
 			</table>
+			</div>
 			)
 	};
+    handleMarked =(index, e) =>{
+        const updEvents = {...this.state.events};
+        if (!e.ctrlKey && !e.altKey) {
+            return;
+        }
+        if (e.ctrlKey && updEvents[index].marked) {
+            updEvents[index].marked = false;
+        }
+        else{
+            updEvents[index].marked = true;
+        }
+        this.setState({
+            events:updEvents
+        });
+    };
+   onDragStart = (e, index) => {
+        this.draggedItem = this.state.events[index];
+        e.dataTransfer.effectAllowed = "move";
+        e.dataTransfer.setData("text/html", e.target);
+       this.setState({
+           startIndex: index
+       });
+    };
+    onDragOver = (index) => {
+        const draggedOverItem = this.state.events[index];
+        if (this.draggedItem === draggedOverItem) {
+            return;
+        }
+        this.setState({
+            finishIndex: index
+        });
+    };
+    onDragEnd = () => {
+        const {events, startIndex, finishIndex} = this.state;
+        let start = events[startIndex];
+        events[startIndex] = events[finishIndex];
+       	events[finishIndex] = start;
+        this.setState({
+            events,
+            startIndex: null,
+            finishIndex: null
+        })
+    };
 
 	renderRow(row, index) {
+        let classes = [];
+        if (row.marked){
+            classes.push('active');
+        }
 	    return (
-	        <tr key={index}>
+	        <tr
+                onDragStart={e => this.onDragStart(e, index)}
+				draggable
+				onDragOver={() => this.onDragOver(index)}
+                onDragEnd={this.onDragEnd}
+                className={classes} onClick = {this.handleMarked.bind(this, index)} key={index}
+			>
 	            <td className="date">{row.date}</td>
 	            <td className="event">{row.event}</td>
-				<td><input type="button"  className="button1" value="Удалить" onClick={this.deleteElement.bind(this, index)}/></td>
+				<td><input type="button"  className="button button--table" value="Удалить" onClick={this.deleteElement.bind(this, index)}/></td>
 	        </tr>
 
 	    )
 	};
-
     render() {
         return (
-            <div className="content">
+            <div className="container">
                {this.renderTable(this.state.events)}
-               <div className="button">
-	                <div className="input_block">
-				        <input type="text"  id="insertDate"  onChange={this.updateEvent} className="fields" placeholder="date"/>
-				        <input type="text"  id="insertEvent"  onChange={this.updateEvent} className="fields" placeholder="event"/>
-			        </div>
-                    <input type="button" className="button1" value="Добавить" onClick={this.insertElement}/>
+               <div>
+                   <div className="form_item">
+                       <input type="text"  id="insertDate"  onChange={this.updateEvent} className="fields" placeholder="date"/>
+                       <input type="text"  id="insertEvent"  onChange={this.updateEvent} className="fields" placeholder="event"/>
+                   </div>
+                   <div className="btn_item">
+                       <input type="button" className="button button--table" value="Добавить" onClick={this.insertElement}/>
+                   </div>
+
+
+
                 </div>
     		</div>
         );

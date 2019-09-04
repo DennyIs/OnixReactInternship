@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import '../../assets/components/app/App.css';
 import rect1 from "../../assets/components/img/rect1.png";
 
-const API_KEY = 'd8cdf3658e9a132ca913b27667fb2156';
+
 
 class Weather extends Component{
     constructor(props){
@@ -12,11 +12,12 @@ class Weather extends Component{
             mycity: ''
         };
     }
+    componentDidMount() {
+    }
     getWeather = async (event) => {
         event.preventDefault();
-
         const api_url = await
-            fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.mycity}&appid=${API_KEY}&units=metric`);
+            fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.state.mycity}&appid=${process.env.REACT_APP_API_KEY}&units=metric`);
         const data = await api_url.json();
         try {
         let sunset = data.sys.sunset;
@@ -25,8 +26,6 @@ class Weather extends Component{
         let sunrise = data.sys.sunrise;
         let date1 = new Date(+sunrise * 1000);
         let sunrise_time = date1.getHours() + ":" + date1.getMinutes() + ":" + date1.getSeconds();
-        console.log(sunset_time);
-        console.log(data);
                 this.setState({
                     weather: {
                         temp: data.main.temp,
@@ -44,7 +43,6 @@ class Weather extends Component{
             e = data.message;
             alert(e);
         }
-        console.log(this.state.weather);
     };
     renderTable(data) {
         if (data) {
@@ -80,20 +78,23 @@ class Weather extends Component{
     }
     render() {
         return (
-            <div className="title" id="#biography">
-                <div>
-                    Weather from API
+            <section className="section" id="#biography">
+                <div className='container'>
+                    <div className="section_header">
+                        <h3 className="section_subtitle">Weather</h3>
+                        <h2 className="section_title">Enter the name of the city in Latin letters</h2>
+                    </div>
+                    <div className="weather_form">
+                        <div className="form_item">
+                        <form onSubmit={this.getWeather}>
+                            <input type="text" name="city" onChange={this.handleChange} className="fields" placeholder="Город"/>
+                            <input type="submit" className="button button--table" value="Показать погоду"/>
+                        </form>
+                        </div>
+                    </div>
+                    {this.renderTable(this.state.weather)}
                 </div>
-                <h2>
-                    Enter the name of the city in Latin letters
-                </h2>
-                <form onSubmit={this.getWeather}>
-                <input type="text" name="city" onChange={this.handleChange} className="fields" placeholder="Город"/>
-                <input type="submit" className="button1" value="Показать погоду"/>
-                {this.renderTable(this.state.weather)}
-                </form>
-                <img src={rect1} alt="rectangle"/>
-            </div>
+            </section>
         );
     };
 
