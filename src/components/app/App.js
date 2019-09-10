@@ -17,80 +17,18 @@ import bullseye from '../../assets/components/img/bullseye.png';
 import pin from '../../assets/components/img/pin.png';
 import ipad from '../../assets/components/img/ipad.png';
 import iphone from '../../assets/components/img/iphone.png';
-import octocat from '../../assets/components/img/octocat.png';
-import Biography from '../biography/Biography'
-import Weather from '../weather/Weather'
-
-
-const top_menu = 'Home',
-top_menu1 = 'About',
-top_menu2 = 'Services',
-top_menu3 = 'Design';
-
-const top_menu_href = 'main',
-top_menu_href1 = 'about',
-top_menu_href2 = 'services',
-top_menu_href3 = 'design';
-
-const header_button = 'Learn More',
-header_button_href = 'about;'
-
-const footer_text = 'Original layout',
-footer_href = 'http://psd-html-css.ru/templates/mogo-besplatnyy-psd-shablon-lendingovoy-stranicy',
-footer_text1 = 'Designed by',
-author_name = 'DENIS KONONCHENKO',
-github = 'GitHub',
-github_href = 'https://github.com/DennyIs/OnixReactInternship';
+import Biography from './Biography/Biography'
+import Weather from './Weather/Weather'
+import Header from "../Header";
+import Footer from "../Footer";
 
 
 
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-     <header className="header">
-          <div className="container" id="main">
-              <div className="header_inner">
-                  <div className="header_logo">MoGo</div>
-                  <nav>
-                      <ul className="menu-main">
-                          <a className="nav_link" href={'#' + top_menu_href}>{top_menu}</a>
-                          <a className="nav_link" href={'#' + top_menu_href1}>{top_menu1}</a>
-                          <a className="nav_link" href={'#' + top_menu_href2}>{top_menu2}</a>
-                          <a className="nav_link" href={'#' + top_menu_href3}>{top_menu3}</a>
-                      </ul>
-                  </nav>
-              </div>
-          </div>
-     </header>
-          <div className="intro">
-              <div className="container">
-                  <div className="intro_inner">
-                      <h2 className="intro_subtitle">Creative Template</h2>
-                      <h1 className="intro_title">Welcome to MoGo</h1>
-                      <a className="button" href={'#' + header_button_href}>{header_button}</a>
-                  </div>
-              </div>
-
-              <div className="intro_slider">
-                  <div className="container">
-                      <div className="slider_inner">
-                          <div className="slider_item">
-                              <span className="slider_number">01</span> Intro
-                          </div>
-                          <div className="slider_item">
-                              <span className="slider_number">02</span> Work
-                          </div>
-                          <div className="slider_item">
-                              <span className="slider_number">03</span> About
-                          </div>
-                          <div className="slider_item">
-                              <span className="slider_number">04</span> Contacts
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+        <Header/>
     <section className="section" id="#biography">
         <div className="container">
             <div className="section_header">
@@ -265,35 +203,10 @@ function App() {
             </div>
         </div>
     </section>
-    <footer className="footer">
-    <div className="container">
-        <div className="footer title">
-            <p>
-                {footer_text1} 
-            </p>
-            <h2>
-                {author_name}
-            </h2>   
-        </div>  
-        <div className="footer title">
-            <p>
-                {footer_text}
-            </p>
-            <a href={footer_href}>Layout</a>   
-        </div>  
-        <div className="footer title">
-            <p>
-                {github}
-            </p>
-            <h2>
-                <a href={github_href}><img src={octocat} alt="Icon"/></a>   
-            </h2>   
-        </div> 
-    </div>
-    </footer>  
+    <Footer/>
     </div>
 
   );
 }
 
-export default App;
+

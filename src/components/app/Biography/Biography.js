@@ -1,6 +1,7 @@
 import React, {Component} from "react";
-import '../../assets/components/app/App.css';
-class Biography extends Component {
+import '../../../assets/components/app/App.css';
+import Table from "../Biography/Table";
+export default class Biography extends Component {
 	constructor(props){
 	    super(props);
 	    this.state = {
@@ -17,37 +18,44 @@ class Biography extends Component {
                 	0:
 					{
 						date: "1996",
-						event: "Год рождения"
+						event: "Год рождения",
+                        classes: [],
 					},
 					1:
 					{
 						date: "2002",
-						event: "Начало учебы в школе"
+						event: "Начало учебы в школе",
+                        classes: [],
 					},
 					2:
 					{
 						date: "2011",
-						event: "Закончил школу и поступил в колледж"
+						event: "Закончил школу и поступил в колледж",
+                        classes: [],
 					},
 					3:
 					{
 						date: "2015",
-						event: "Закончил колледж"
+						event: "Закончил колледж",
+                        classes: [],
 					},
 					4:
 					{
 						date: "2015",
-						event: "Начал обудение в КНТУ"
+						event: "Начал обудение в КНТУ",
+                        classes: [],
 					},
 					5:
 					{
 						date: "2018",
-						event: "Начал учить программирование"
+						event: "Начал учить программирование",
+                        classes: [],
 					},
 					6:
 					{
 						date: "2018",
-						event: "Окончил бакалаврат и перешел на магистратуру"
+						event: "Окончил бакалаврат и перешел на магистратуру",
+                        classes: [],
 					}
    				 },
 	    	};
@@ -133,46 +141,13 @@ class Biography extends Component {
         })
     };
 
-    handleImageLoaded() {
+    handleImageLoaded = () => {
         this.setState({ imageStatus: "Loaded" });
-    }
+    };
 
-    handleImageError() {
+    handleImageError = () => {
         this.setState({ imageStatus: "failed to load" });
-    }
-
-	renderTable(data){
-		return(
-
-            <div>
-                <div className="gif_item">
-
-                    <img className="gif"
-                         src={this.state.imgSrc}
-                         onLoad={this.handleImageLoaded.bind(this)}
-                         onError={this.handleImageError.bind(this)}
-                    />
-                    <div>
-                        {this.state.imageStatus}
-                    </div>
-
-                </div>
-
-
-			<table>
-				<tbody>
-	                <tr>
-	                    <th onClick={this.sortFunction}>Year<br/></th>
-	                    <th onClick={this.bubbleSort}>Event<br/></th>
-	                </tr>
-					{
-                    Object.entries(data).map(([index, row]) => this.renderRow(row, index))
-                    }
-	                </tbody>
-			</table>
-			</div>
-			)
-	};
+    };
     handleMarked =(index, e) =>{
         const updEvents = {...this.state.events};
         if (!e.ctrlKey && !e.altKey) {
@@ -180,13 +155,17 @@ class Biography extends Component {
         }
         if (e.ctrlKey && updEvents[index].marked) {
             updEvents[index].marked = false;
+            updEvents[index].classes = "";
         }
         else{
             updEvents[index].marked = true;
+            updEvents[index].classes = "active";
+
         }
         this.setState({
             events:updEvents
         });
+        console.log(updEvents)
     };
    onDragStart = (e, index) => {
         this.draggedItem = this.state.events[index];
@@ -216,45 +195,28 @@ class Biography extends Component {
             finishIndex: null
         })
     };
-
-	renderRow(row, index) {
-        let classes = [];
-        if (row.marked){
-            classes.push('active');
-        }
-	    return (
-	        <tr
-                onDragStart={e => this.onDragStart(e, index)}
-				draggable
-				onDragOver={() => this.onDragOver(index)}
-                onDragEnd={this.onDragEnd}
-                className={classes} onClick = {this.handleMarked.bind(this, index)} key={index}
-			>
-	            <td className="date">{row.date}</td>
-	            <td className="event">{row.event}</td>
-				<td><input type="button"  className="button button--table" value="Удалить" onClick={this.deleteElement.bind(this, index)}/></td>
-	        </tr>
-
-	    )
-	};
     render() {
+        const {events, imgSrc, imageStatus} = this.state;
         return (
-            <div className="container">
-               {this.renderTable(this.state.events)}
-               <div>
-                   <div className="form_item">
-                       <input type="text"  id="insertDate"  onChange={this.updateEvent} className="fields" placeholder="date"/>
-                       <input type="text"  id="insertEvent"  onChange={this.updateEvent} className="fields" placeholder="event"/>
-                   </div>
-                   <div className="btn_item">
-                       <input type="button" className="button button--table" value="Добавить" onClick={this.insertElement}/>
-                   </div>
+                   <Table
+                       sortFunction = {this.sortFunction}
+                       bubbleSort = {this.bubbleSort}
+                       updateEvent = {this.updateEvent}
+                       insertElement = {this.insertElement}
+                       deleteElement = {this.deleteElement}
+                       handleImageLoaded = {this.handleImageLoaded}
+                       handleImageError = {this.handleImageError}
+                       handleMarked = {this.handleMarked}
+                       onDragStart = {this.onDragStart}
+                       onDragOver = {this.onDragOver}
+                       onDragEnd = {this.onDragEnd}
+                       renderRow = {this.renderRow}
 
-
-
-                </div>
-    		</div>
+                       events = {events}
+                       imgSrc = {imgSrc}
+                       imageStatus = {imageStatus}
+                       classes = {events.classes}
+                   />
         );
     };
 }
-export default Biography;
