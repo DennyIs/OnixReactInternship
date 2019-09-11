@@ -133,6 +133,24 @@ h1, h2, h3, h4, h5, h6 {
   border: 4px solid #F38181;
   background-color: #f0e2c5;
 }
+
+.error_button{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FF0000;
+    border: 4px solid #FF0000;
+    padding: 10px 15px;
+    background-color: #fff;
+    transition: background .2s linear, color .2s linear, border .2s;
+}
+.error_button:hover{
+    background-color: #fff;
+    color: #32CD32;
+    border: 4px solid #32CD32;
+}
 .btn_item{
   width: 100%;
   text-align: center;
@@ -533,4 +551,10 @@ width: 4px;
 .gif_item{
   text-align: center;
 
+}
+
+.error_massage{
+  color: red;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
 }

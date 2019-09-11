@@ -1,83 +1,88 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import '../../../assets/components/app/App.css';
 import Table from "../Biography/Table";
+import SweetAlert from 'sweetalert2-react';
+
 export default class Biography extends Component {
-	constructor(props){
-	    super(props);
-	    this.state = {
-	        sortedByFunc: false,
-	        sortedByBubble: false,
-			insertDate: '',
-			insertEvent: '',
-			startIndex: null,
-			finishIndex: null,
+    constructor(props) {
+        super(props);
+        this.state = {
+            show: true,
+            hasError: false,
+            sortedByFunc: false,
+            sortedByBubble: false,
+            insertDate: '',
+            insertEvent: '',
+            startIndex: null,
+            finishIndex: null,
             imageStatus: 'loading',
             imgSrc: 'https://i.gifer.com/72gi.gif',
-	        events:
+            events:
                 {
-                	0:
-					{
-						date: "1996",
-						event: "Год рождения",
-                        classes: [],
-					},
-					1:
-					{
-						date: "2002",
-						event: "Начало учебы в школе",
-                        classes: [],
-					},
-					2:
-					{
-						date: "2011",
-						event: "Закончил школу и поступил в колледж",
-                        classes: [],
-					},
-					3:
-					{
-						date: "2015",
-						event: "Закончил колледж",
-                        classes: [],
-					},
-					4:
-					{
-						date: "2015",
-						event: "Начал обудение в КНТУ",
-                        classes: [],
-					},
-					5:
-					{
-						date: "2018",
-						event: "Начал учить программирование",
-                        classes: [],
-					},
-					6:
-					{
-						date: "2018",
-						event: "Окончил бакалаврат и перешел на магистратуру",
-                        classes: [],
-					}
-   				 },
-	    	};
-		}
+                    0:
+                        {
+                            date: "1996",
+                            event: "Год рождения",
+                            classes: [],
+                        },
+                    1:
+                        {
+                            date: "2002",
+                            event: "Начало учебы в школе",
+                            classes: [],
+                        },
+                    2:
+                        {
+                            date: "2011",
+                            event: "Закончил школу и поступил в колледж",
+                            classes: [],
+                        },
+                    3:
+                        {
+                            date: "2015",
+                            event: "Закончил колледж",
+                            classes: [],
+                        },
+                    4:
+                        {
+                            date: "2015",
+                            event: "Начал обудение в КНТУ",
+                            classes: [],
+                        },
+                    5:
+                        {
+                            date: "2018",
+                            event: "Начал учить программирование",
+                            classes: [],
+                        },
+                    6:
+                        {
+                            date: "2018",
+                            event: "Окончил бакалаврат и перешел на магистратуру",
+                            classes: [],
+                        }
+                },
+        };
+    }
 
-	sortFunction = () => {
-		const updEvents = {...this.state.events};
-		const updSort = this.state.sortFunction;
-		let sort;
-		if (updSort) {
-	            sort = Object.values(updEvents).sort((a, b) => ((+a.date) - (+b.date)));
-	        } else {
+    sortFunction = () => {
+        const updEvents = {...this.state.events};
+        const updSort = this.state.sortFunction;
+        let sort;
+        if (updSort) {
+            sort = Object.values(updEvents).sort((a, b) => ((+a.date) - (+b.date)));
+        } else {
             sort = Object.values(updEvents).reverse();
-	        }
-	        for (let key in Object.keys(updEvents)){
-	        	updEvents[key] = sort[key];
-			}
-	    this.setState({
-	    	events: updEvents,
-	    	sortFunction: !updSort
-	    })
-	};
+        }
+        for (let key in Object.keys(updEvents)) {
+            updEvents[key] = sort[key];
+        }
+        this.setState({
+            events: updEvents,
+            sortFunction: !updSort
+        })
+    };
+
 
     bubbleSort = () => {
         const updEvents = {...this.state.events};
@@ -97,21 +102,21 @@ export default class Biography extends Component {
         this.setState({
             events: updEvents,
         })
-	};
+    };
 
-    updateEvent = (event) =>{
-            const { target : {id, value} } = event;
-            this.setState({
-                [id]: value
-            })
-        };
+    updateEvent = (event) => {
+        const {target: {id, value}} = event;
+        this.setState({
+            [id]: value
+        })
+    };
 
-	insertElement =() =>{
+    insertElement = () => {
         const updEvents = {...this.state.events};
-		const insertDate = this.state.insertDate;
+        const insertDate = this.state.insertDate;
         const insertEvent = this.state.insertEvent;
         if (!insertDate || !insertEvent) {
-        	alert('Заполните поля');
+            alert('Заполните поля');
             return;
         }
         if (isNaN(insertDate)) {
@@ -122,17 +127,17 @@ export default class Biography extends Component {
             alert('Дата должна быть больше 1990 и меньше 3000');
             return;
         }
-		updEvents[Object.keys(updEvents).length] = {
-			 date: insertDate,
-	         event: insertEvent
-		};
+        updEvents[Object.keys(updEvents).length] = {
+            date: insertDate,
+            event: insertEvent
+        };
         this.setState({
             events: updEvents,
         });
 
-	};
+    };
 
-    deleteElement = (index) =>{
+    deleteElement = (index) => {
         const updEvents = {...this.state.events};
         delete updEvents[index];
 
@@ -142,13 +147,13 @@ export default class Biography extends Component {
     };
 
     handleImageLoaded = () => {
-        this.setState({ imageStatus: "Loaded" });
+        this.setState({imageStatus: "Loaded"});
     };
 
     handleImageError = () => {
-        this.setState({ imageStatus: "failed to load" });
+        this.setState({imageStatus: "failed to load"});
     };
-    handleMarked =(index, e) =>{
+    handleMarked = (index, e) => {
         const updEvents = {...this.state.events};
         if (!e.ctrlKey && !e.altKey) {
             return;
@@ -157,23 +162,23 @@ export default class Biography extends Component {
             updEvents[index].marked = false;
             updEvents[index].classes = "";
         }
-        else{
+        else {
             updEvents[index].marked = true;
             updEvents[index].classes = "active";
 
         }
         this.setState({
-            events:updEvents
+            events: updEvents
         });
         console.log(updEvents)
     };
-   onDragStart = (e, index) => {
+    onDragStart = (e, index) => {
         this.draggedItem = this.state.events[index];
         e.dataTransfer.effectAllowed = "move";
         e.dataTransfer.setData("text/html", e.target);
-       this.setState({
-           startIndex: index
-       });
+        this.setState({
+            startIndex: index
+        });
     };
     onDragOver = (index) => {
         const draggedOverItem = this.state.events[index];
@@ -188,35 +193,65 @@ export default class Biography extends Component {
         const {events, startIndex, finishIndex} = this.state;
         let start = events[startIndex];
         events[startIndex] = events[finishIndex];
-       	events[finishIndex] = start;
+        events[finishIndex] = start;
         this.setState({
             events,
             startIndex: null,
             finishIndex: null
         })
     };
-    render() {
-        const {events, imgSrc, imageStatus} = this.state;
-        return (
-                   <Table
-                       sortFunction = {this.sortFunction}
-                       bubbleSort = {this.bubbleSort}
-                       updateEvent = {this.updateEvent}
-                       insertElement = {this.insertElement}
-                       deleteElement = {this.deleteElement}
-                       handleImageLoaded = {this.handleImageLoaded}
-                       handleImageError = {this.handleImageError}
-                       handleMarked = {this.handleMarked}
-                       onDragStart = {this.onDragStart}
-                       onDragOver = {this.onDragOver}
-                       onDragEnd = {this.onDragEnd}
-                       renderRow = {this.renderRow}
 
-                       events = {events}
-                       imgSrc = {imgSrc}
-                       imageStatus = {imageStatus}
-                       classes = {events.classes}
-                   />
-        );
-    };
+    static getDerivedStateFromError(error) {
+        return { hasError: true };
+
+    }
+    render() {
+
+        const {events, imgSrc, imageStatus, hasError, show} = this.state;
+        if (!hasError) {
+            return (
+                <Fragment>
+                    <Table
+                        sortFunction={this.sortFunction}
+                        bubbleSort={this.bubbleSort}
+                        updateEvent={this.updateEvent}
+                        insertElement={this.insertElement}
+                        deleteElement={this.deleteElement}
+                        handleImageLoaded={this.handleImageLoaded}
+                        handleImageError={this.handleImageError}
+                        handleMarked={this.handleMarked}
+                        onDragStart={this.onDragStart}
+                        onDragOver={this.onDragOver}
+                        onDragEnd={this.onDragEnd}
+
+                        events={events}
+                        imgSrc={imgSrc}
+                        imageStatus={imageStatus}
+                        classes={events.classes}
+                    />
+                </Fragment>
+            );
+        }
+        else{
+            return(
+                <Fragment>
+                    <SweetAlert
+                        show={show}
+                        title="oops"
+                        text="Something went wrong"
+                        onConfirm={() => this.setState({ show: false })}
+                    />
+                    <div className="section_header">
+                        <div className="section">
+                            <div className="container">
+                                <p className="error_massage">There must be something here, but it is not here =(</p>
+                                <input type="button"  className="error_button" value="Report an error"/>
+                            </div>
+                        </div>
+                    </div>
+                </Fragment>
+
+            )
+        }
+    }
 }
