@@ -1,0 +1,44 @@
+@font-face {
+  font-family: Roboto;
+  src: url("../../../assets/fonts/Roboto-Regular.ttf") format("truetype"); }
+@font-face {
+  font-family: Montserrat;
+  src: url("../../../assets/fonts/Montserrat-Bold.ttf") format("truetype"); }
+@font-face {
+  font-family: Kaushan Script;
+  src: url("../../../assets/fonts/KaushanScript-Regular.ttf") format("truetype"); }
+/*Footer*/
+.footer {
+  margin: 0; }
+
+.footer p {
+  font-family: 'Kaushan Script', cursive;
+  color: #333333;
+  font-size: 18px;
+  text-align: center; }
+
+.footer h2, a {
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  color: #333333;
+  font-size: 20px;
+  text-align: center; }
+
+.footer img {
+  width: 64px;
+  height: 64px; }
+
+.map {
+  background: url(../../../assets/components/img/footer.png) no-repeat center/cover;
+  height: 200px;
+  margin-top: 120px; }
+
+.map_content {
+  padding-top: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  color: #f38181;
+  font-size: 24px; }
+
+/*# sourceMappingURL=footer.css.map */
