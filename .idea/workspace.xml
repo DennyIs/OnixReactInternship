@@ -1,47 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75cb1d6d-3bb5-42d5-ab14-f9fcc5a7bbe1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/app/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/alarm.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/arrow_down.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/arrow_up.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/book.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/bullseye.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/computer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/devices.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/equalizer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/footer.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/header.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/home.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/info.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/ipad.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/iphone.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/layer2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/line_graph.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/octocat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/picture.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/pin.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/rect1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/rect_open.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/serv1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/serv2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/serv3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/components/img/serv4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Footer/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Header/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/Biography/Biography.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/Biography/Table/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/Weather/Weather.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/app/Weather/WeatherTable/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-    </list>
+    <list default="true" id="75cb1d6d-3bb5-42d5-ab14-f9fcc5a7bbe1" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -354,7 +314,7 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-23" />
     <option name="y" value="223" />
     <option name="width" value="1399" />
@@ -535,12 +495,12 @@
       <workItem from="1568194273575" duration="4042000" />
       <workItem from="1568708753723" duration="684000" />
       <workItem from="1568711676616" duration="9886000" />
-      <workItem from="1568820388488" duration="9762000" />
+      <workItem from="1568820388488" duration="10011000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133533000" />
+    <option name="totallyTimeSpent" value="133782000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
