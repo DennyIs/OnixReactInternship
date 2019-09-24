@@ -96,7 +96,6 @@ export default class Header extends Component {
       &appid=${process.env.REACT_APP_API_KEY}&units=metric`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           const { sunset } = data.sys;
           const date = new Date(+sunset * 1000);
           const sunsetTime = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
