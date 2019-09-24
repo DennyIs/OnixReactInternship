@@ -35,14 +35,16 @@
   transition: background .2s linear, color .2s linear;
 }
 table {
+
   font-family: 'Roboto', sans-serif;
   text-align: center;
   border-collapse: collapse;
   border-spacing: 5px;
   background: #f2e6ce;
   border-radius: 20px;
-  width: 75%;
+  width: 100%;
   margin: auto;
+  font-size: 14px;
   th {
     font-size: 22px;
     font-weight: 300;
@@ -51,15 +53,19 @@ table {
     td {
       padding: 10px;
       color: #000000;
+      margin: 10px;
+
     }
   }
 }
 .fields{
-  margin-right:5px;
   border: 2px solid #f38181;
   height: 30px;
   background-color: #fff;
   border-radius: 22px;
+  display: flex;
+  margin: 10px auto;
+  text-align: center;
 }
 .active{
   background-color: #ff7770;
@@ -78,4 +84,17 @@ table {
   color: red;
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
+}
+@media (max-width: 570px) {
+  table{
+    justify-content: center;
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+    padding: 0;
+  }
+  .button--table{
+    padding: 2px 2px;
+    font-size: 8px;
+  }
 }
