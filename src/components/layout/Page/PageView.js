@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
+import Button from '../../elements/Button/Button';
+import '../../scss/pages/home.scss';
 
 const PageView = ({
   page, footerText, footerHref, footerText1, authorName, github, githubHref, topHref,
-  topHref1, topHref2, topHref3, headerButton, headerButtonHref
+  topHref1, topHref2, topHref3, headerButton, headerButtonHref, scrollTop, scrollDown, upButton, downButton
 }) => {
   return (
     <>
@@ -17,6 +19,8 @@ const PageView = ({
         headerButton={headerButton}
         headerButtonHref={headerButtonHref}
       />
+      {upButton && <Button className="btn_up" title="" onButtonClick={scrollTop} /> }
+      {downButton && <Button className="btn_down" title="" onButtonClick={scrollDown} />}
       { page }
       <Footer
         footerText={footerText}
@@ -44,6 +48,10 @@ PageView.propTypes = {
   topHref3: PropTypes.string,
   headerButton: PropTypes.string,
   headerButtonHref: PropTypes.string,
+  scrollTop: PropTypes.func,
+  scrollDown: PropTypes.func,
+  upButton: PropTypes.func,
+  downButton: PropTypes.func,
 
 };
 PageView.defaultProps = {
@@ -59,6 +67,10 @@ PageView.defaultProps = {
   topHref3: '',
   headerButton: '',
   headerButtonHref: '',
+  scrollTop: undefined,
+  scrollDown: undefined,
+  upButton: undefined,
+  downButton: undefined,
 
 };
 export default PageView;

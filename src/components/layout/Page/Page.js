@@ -18,8 +18,49 @@ class Page extends Component {
       topHref3: 'design',
       headerButton: 'Learn More',
       headerButtonHref: 'about;',
+      upButton: false,
+      downButton: false
+
     };
   }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.checkScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.checkScroll);
+  }
+
+  checkScroll = () => {
+    const { upButton, downButton } = this.state;
+    const scroll = window.pageYOffset;
+    const element = document.getElementById('intro');
+    const headerHeight = element.offsetHeight;
+    const windowHeight = document.body.scrollHeight - window.innerHeight;
+    const updatedUpButton = scroll >= headerHeight;
+    const updatedDownButton = scroll <= windowHeight - headerHeight;
+    if (updatedUpButton !== upButton || updatedDownButton !== downButton) {
+      this.setState({
+        upButton: updatedUpButton,
+        downButton: updatedDownButton
+      });
+    }
+  };
+
+  scrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  scrollDown = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight - window.innerHeight,
+      behavior: 'smooth'
+    });
+  };
 
   render() {
     const { children } = this.props;
@@ -27,9 +68,12 @@ class Page extends Component {
       footerText, footerHref, footerText1, authorName, github, githubHref, topHref,
       topHref1, topHref2, topHref3, headerButton, headerButtonHref
     } = this.state;
+    const { upButton, downButton } = this.state;
 
     return (
       <PageView
+        upButton={upButton}
+        downButton={downButton}
         footerText={footerText}
         footerHref={footerHref}
         footerText1={footerText1}
@@ -43,6 +87,8 @@ class Page extends Component {
         headerButton={headerButton}
         headerButtonHref={headerButtonHref}
         page={children}
+        scrollTop={this.scrollTop}
+        scrollDown={this.scrollDown}
       />
     );
   }

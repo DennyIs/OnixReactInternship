@@ -26,7 +26,7 @@ const Header = ({
           </div>
         </div>
       </header>
-      <div className="intro">
+      <div className="intro" id="intro">
         <div className="container">
           <div className="intro_inner">
             <h2 className="intro_subtitle">Creative Template</h2>

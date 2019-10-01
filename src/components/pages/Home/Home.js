@@ -124,6 +124,7 @@ export default class Header extends Component {
 
   /* Biography */
 
+
   sortFunction = () => {
     const { events } = this.state;
     const updSort = false;
