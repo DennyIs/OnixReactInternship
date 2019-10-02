@@ -50,8 +50,8 @@ PageView.propTypes = {
   headerButtonHref: PropTypes.string,
   scrollTop: PropTypes.func,
   scrollDown: PropTypes.func,
-  upButton: PropTypes.func,
-  downButton: PropTypes.func,
+  upButton: PropTypes.bool,
+  downButton: PropTypes.bool,
 
 };
 PageView.defaultProps = {

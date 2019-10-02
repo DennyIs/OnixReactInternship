@@ -76,8 +76,7 @@ export default class Header extends Component {
   }
 
   static getDerivedStateFromError(error) {
-    console.log(error);
-    return { hasError: true };
+    return { hasError: true, error };
   }
 
   /* Weather */
@@ -114,7 +113,7 @@ export default class Header extends Component {
           });
         })
         .catch((e) => {
-          alert(e);
+          return e;
         });
     }
 
@@ -177,15 +176,12 @@ export default class Header extends Component {
     const { insertDate } = this.state;
     const { insertEvent } = this.state;
     if (!insertDate || !insertEvent) {
-      alert('Заполните поля');
       return;
     }
     if (Number.isNaN(insertDate)) {
-      alert('Введите дату');
       return;
     }
     if (insertDate <= 1990 || insertDate >= 3000) {
-      alert('Дата должна быть больше 1990 и меньше 3000');
       return;
     }
     updEvents[Object.keys(updEvents).length] = {
