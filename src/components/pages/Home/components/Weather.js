@@ -1,27 +1,16 @@
 import React from 'react';
 import '../../../scss/layout/table.scss';
 import PropTypes from 'prop-types';
-import Input from '../../../elements/Input/Input';
-import Button from '../../../elements/Button/Button';
+import LoaderHOC from '../../../../hoc/withLoader';
 
 
 const Weather = ({
-  handleChange, getWeather, temp, city, country, humidity, pressure, sunrise, sunset
+  temp, city, country, humidity, pressure, sunrise, sunset
 }) => {
   return (
     <>
       <section className="section" id="#biography">
         <div className="container">
-          <div className="section_header">
-            <h3 className="section_subtitle">Weather</h3>
-            <h2 className="section_title">Enter the name of the city in Latin letters</h2>
-          </div>
-          <div className="weather_form">
-            <div className="form_item">
-              <Input onInputChange={handleChange} id="mycity" className="fields" placeholder="Город" />
-              <Button className="button--table" title="Показать погоду" onButtonClick={getWeather} />
-            </div>
-          </div>
           {city ? (
             <table>
               <tbody>
@@ -88,8 +77,6 @@ const Weather = ({
   );
 };
 Weather.propTypes = {
-  handleChange: PropTypes.func,
-  getWeather: PropTypes.func,
   temp: PropTypes.number,
   city: PropTypes.string,
   country: PropTypes.string,
@@ -99,8 +86,6 @@ Weather.propTypes = {
   sunset: PropTypes.string,
 };
 Weather.defaultProps = {
-  handleChange: undefined,
-  getWeather: undefined,
   temp: undefined,
   city: undefined,
   country: undefined,
@@ -109,4 +94,6 @@ Weather.defaultProps = {
   sunrise: undefined,
   sunset: undefined,
 };
-export default Weather;
+
+const Loder = LoaderHOC(Weather);
+export default Loder;

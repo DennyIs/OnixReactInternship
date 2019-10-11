@@ -5,6 +5,7 @@ import SweetAlert from 'sweetalert2-react';
 import Button from '../../../elements/Button/Button';
 import Input from '../../../elements/Input/Input';
 
+
 const Biography = ({
   sortFunction, bubbleSort, updateEvent, insertElement, deleteElement,
   handleImageLoaded, handleImageError, handleMarked, onDragStart, onDragOver,

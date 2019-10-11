@@ -73,4 +73,5 @@ PageView.defaultProps = {
   downButton: undefined,
 
 };
+
 export default PageView;

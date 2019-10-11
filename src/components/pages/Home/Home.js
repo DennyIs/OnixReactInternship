@@ -101,22 +101,23 @@ export default class Header extends Component {
           const { sunrise } = data.sys;
           const date1 = new Date(+sunrise * 1000);
           const sunriseTime = `${date1.getHours()}:${date1.getMinutes()}:${date1.getSeconds()}`;
-          this.setState({
-            temp: data.main.temp,
-            city: data.name,
-            country: data.sys.country,
-            humidity: data.main.humidity,
-            pressure: data.main.pressure,
-            sunrise: sunriseTime,
-            sunset: sunsetTime,
-            error: ''
-          });
+          window.setTimeout(() => {
+            this.setState({
+              temp: data.main.temp,
+              city: data.name,
+              country: data.sys.country,
+              humidity: data.main.humidity,
+              pressure: data.main.pressure,
+              sunrise: sunriseTime,
+              sunset: sunsetTime,
+              error: ''
+            });
+          }, 3000);
         })
         .catch((e) => {
           return e;
         });
     }
-
     return false;
   };
 
@@ -269,8 +270,6 @@ export default class Header extends Component {
     } = this.state;
     return (
       <HomeView
-        sortFunction={this.sortFunction}
-        bubbleSort={this.bubbleSort}
         updateEvent={this.updateEvent}
         insertElement={this.insertElement}
         deleteElement={this.deleteElement}
@@ -282,6 +281,8 @@ export default class Header extends Component {
         onDragEnd={this.onDragEnd}
         getWeather={this.getWeather}
         handleChange={this.handleChange}
+        sortFunction={this.sortFunction}
+        bubbleSort={this.bubbleSort}
 
         events={events}
         imgSrc={imgSrc}
