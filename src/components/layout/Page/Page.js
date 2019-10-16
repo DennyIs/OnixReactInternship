@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import PageView from './PageView';
+import ThemeColorContext from '../../../context/ThemeContext';
 
 class Page extends Component {
   constructor(props) {
@@ -19,10 +20,12 @@ class Page extends Component {
       headerButton: 'Learn More',
       headerButtonHref: 'about;',
       upButton: false,
-      downButton: false
+      downButton: false,
+      theme: 'true',
 
     };
   }
+
 
   componentDidMount() {
     window.addEventListener('scroll', this.checkScroll);
@@ -30,6 +33,14 @@ class Page extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('scroll', this.checkScroll);
+  }
+
+  toggleTheme = () => {
+    let { theme } = this.state;
+    theme = !theme;
+    this.setState({
+      theme
+    });
   }
 
   checkScroll = () => {
@@ -66,30 +77,36 @@ class Page extends Component {
     const { children } = this.props;
     const {
       footerText, footerHref, footerText1, authorName, github, githubHref, topHref,
-      topHref1, topHref2, topHref3, headerButton, headerButtonHref
+      topHref1, topHref2, topHref3, headerButton, headerButtonHref, theme
     } = this.state;
     const { upButton, downButton } = this.state;
 
     return (
-      <PageView
-        upButton={upButton}
-        downButton={downButton}
-        footerText={footerText}
-        footerHref={footerHref}
-        footerText1={footerText1}
-        authorName={authorName}
-        github={github}
-        githubHref={githubHref}
-        topHref={topHref}
-        topHref1={topHref1}
-        topHref2={topHref2}
-        topHref3={topHref3}
-        headerButton={headerButton}
-        headerButtonHref={headerButtonHref}
-        page={children}
-        scrollTop={this.scrollTop}
-        scrollDown={this.scrollDown}
-      />
+      <ThemeColorContext.Provider value={{
+        theme,
+        toggleTheme: this.toggleTheme
+      }}
+      >
+        <PageView
+          upButton={upButton}
+          downButton={downButton}
+          footerText={footerText}
+          footerHref={footerHref}
+          footerText1={footerText1}
+          authorName={authorName}
+          github={github}
+          githubHref={githubHref}
+          topHref={topHref}
+          topHref1={topHref1}
+          topHref2={topHref2}
+          topHref3={topHref3}
+          headerButton={headerButton}
+          headerButtonHref={headerButtonHref}
+          page={children}
+          scrollTop={this.scrollTop}
+          scrollDown={this.scrollDown}
+        />
+      </ThemeColorContext.Provider>
 
     );
   }

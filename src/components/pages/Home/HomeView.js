@@ -19,6 +19,7 @@ import ipad from '../../../assets/images/ipad.png';
 import iphone from '../../../assets/images/iphone.png';
 import Biography from './components/Biography';
 import Weather from './components/Weather';
+import ThemeColorContext from '../../../context/ThemeContext';
 
 
 const HomeView = ({
@@ -28,185 +29,188 @@ const HomeView = ({
   mycity, hasError, show, weather, temp, city, country, humidity, pressure, sunrise, sunset, error
 }) => {
   return (
-    <div className="App">
-      <section className="section" id="#biography">
-        <div className="container">
-          <div className="section_header">
-            <h3 className="section_subtitle">Biography</h3>
-            <h2 className="section_title">Story about me</h2>
-            <div className="section_text">
-              <p>
+    <ThemeColorContext.Consumer>
+      {
+          ({ theme }) => (
+            <div className="App">
+              <section className="section" id="#biography">
+                <div className="container">
+                  <div className={`section_header ${theme ? 'text_light' : 'text_dark'} `}>
+                    <h3 className="section_subtitle">Biography</h3>
+                    <h2 className="section_title">Story about me</h2>
+                    <div className="section_text">
+                      <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
                 minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
                 ex ea commodo consequat.
-              </p>
-            </div>
-          </div>
-          <Biography
-            sortFunction={sortFunction}
-            bubbleSort={bubbleSort}
-            updateEvent={updateEvent}
-            insertElement={insertElement}
-            deleteElement={deleteElement}
-            handleImageLoaded={handleImageLoaded}
-            handleImageError={handleImageError}
-            handleMarked={handleMarked}
-            onDragStart={onDragStart}
-            onDragOver={onDragOver}
-            onDragEnd={onDragEnd}
-
-            hasError={hasError}
-            events={events}
-            imgSrc={imgSrc}
-            show={show}
-            imageStatus={imageStatus}
-            classes={events.classes}
-          />
-        </div>
-      </section>
-      <section className="section" id="#about">
-        <div className="container">
-          <div className="section_header">
-            <h3 className="section_subtitle">What we do</h3>
-            <h2 className="section_title">Story about us</h2>
-            <div className="section_text">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat.
-              </p>
-            </div>
-          </div>
-          <div className="about">
-            <div className="about_item">
-              <div className="about_inner">
-                <div className="about_image">
-                  <img src={serv3} alt="Services" />
-                </div>
-                <div className="about_text">super team</div>
-              </div>
-            </div>
-            <div className="about_item">
-              <div className="about_inner">
-                <div className="about_image">
-                  <img src={serv1} alt="Services" />
-                </div>
-                <div className="about_text">super team</div>
-              </div>
-            </div>
-            <div className="about_item">
-              <div className="about_inner">
-                <div className="about_image">
-                  <img src={serv2} alt="Services" />
-                </div>
-                <div className="about_text">super team</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </section>
-      <section className="section" id="services">
-        <div className="container">
-
-          <div className="section_header">
-            <h3 className="section_subtitle">We work with</h3>
-            <h2 className="section_title">Amazing Services</h2>
-          </div>
-          <div className="services">
-
-            <div className="services_item services_item--border">
-              <img className="services_img" src={alarm} alt="Icon" />
-              <div className="services_title">Photography</div>
-              <div className="services_text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor.
-              </div>
-            </div>
-            <div className="services_item services_item--border">
-              <img className="services_img" src={lineGraph} alt="Icon" />
-              <div className="services_title">Web Design</div>
-              <div className="services_text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                sed do eiusmod tempor.
-              </div>
-            </div>
-            <div className="services_item services_item--border">
-              <img className="services_img" src={computer} alt="Icon" />
-              <div className="services_title">Creativity</div>
-              <div className="services_text">
-                Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              </div>
-            </div>
-
-            <div className="services_item">
-              <img className="services_img" src={book} alt="Icon" />
-              <div className="services_title">SEO</div>
-              <div className="services_text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-              </div>
-            </div>
-
-            <div className="services_item">
-              <img className="services_img" src={home} alt="Icon" />
-              <div className="services_title">Css/HTML</div>
-              <div className="services_text">
-                Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-              </div>
-            </div>
-
-            <div className="services_item">
-              <img className="services_img" src={image} alt="Icon" />
-              <div className="services_title">Digital</div>
-              <div className="services_text">
-                Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="section section--devices" id="design">
-        <div className="devices">
-          <div className="container">
-            <div className="section_header">
-              <h3 className="section_subtitle">For all devices</h3>
-              <h2 className="section_title">Unique design</h2>
-            </div>
-            <div className="devices">
-              <img className="devices_img" src={ipad} alt="Icon" />
-              <img className="devices_img devices_img--iphone" src={iphone} alt="Icon" />
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="section">
-        <div className="container">
-          <div className="section_header">
-            <h3 className="section_subtitle">Service</h3>
-            <h2 className="section_title">What we do</h2>
-            <div className="section_text">
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat.
-              </p>
-            </div>
-          </div>
-          <div className="what_we_do">
-            <div className="wedo_item">
-              <img className="what_we_do_img" src={serv4} alt="Icon" />
-            </div>
-            <div className="wedo_item">
-              <div className="accordion">
-                <div className="accordion_item active_ac ">
-                  <div className="accordion_header">
-                    <img className="accordion_img" src={picture} alt="Icon" />
-                    <div className="accordion_title">Photography</div>
+                      </p>
+                    </div>
                   </div>
-                  <div className="accordion_text ">
+                  <Biography
+                    sortFunction={sortFunction}
+                    bubbleSort={bubbleSort}
+                    updateEvent={updateEvent}
+                    insertElement={insertElement}
+                    deleteElement={deleteElement}
+                    handleImageLoaded={handleImageLoaded}
+                    handleImageError={handleImageError}
+                    handleMarked={handleMarked}
+                    onDragStart={onDragStart}
+                    onDragOver={onDragOver}
+                    onDragEnd={onDragEnd}
+
+                    hasError={hasError}
+                    events={events}
+                    imgSrc={imgSrc}
+                    show={show}
+                    imageStatus={imageStatus}
+                    classes={events.classes}
+                  />
+                </div>
+              </section>
+              <section className="section" id="#about">
+                <div className="container">
+                  <div className={`section_header ${theme ? 'text_light' : 'text_dark'} `}>
+                    <h3 className="section_subtitle">What we do</h3>
+                    <h2 className="section_title">Story about us</h2>
+                    <div className="section_text">
+                      <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="about">
+                    <div className="about_item">
+                      <div className="about_inner">
+                        <div className="about_image">
+                          <img src={serv3} alt="Services" />
+                        </div>
+                        <div className="about_text">super team</div>
+                      </div>
+                    </div>
+                    <div className="about_item">
+                      <div className="about_inner">
+                        <div className="about_image">
+                          <img src={serv1} alt="Services" />
+                        </div>
+                        <div className="about_text">super team</div>
+                      </div>
+                    </div>
+                    <div className="about_item">
+                      <div className="about_inner">
+                        <div className="about_image">
+                          <img src={serv2} alt="Services" />
+                        </div>
+                        <div className="about_text">super team</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </section>
+              <section className="section" id="services">
+                <div className="container">
+
+                  <div className={`section_header ${theme ? 'text_light' : 'text_dark'} `}>
+                    <h3 className="section_subtitle">We work with</h3>
+                    <h2 className="section_title">Amazing Services</h2>
+                  </div>
+                  <div className="services">
+
+                    <div className="services_item services_item--border">
+                      <img className="services_img" src={alarm} alt="Icon" />
+                      <div className="services_title">Photography</div>
+                      <div className="services_text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor.
+                      </div>
+                    </div>
+                    <div className="services_item services_item--border">
+                      <img className="services_img" src={lineGraph} alt="Icon" />
+                      <div className="services_title">Web Design</div>
+                      <div className="services_text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor.
+                      </div>
+                    </div>
+                    <div className="services_item services_item--border">
+                      <img className="services_img" src={computer} alt="Icon" />
+                      <div className="services_title">Creativity</div>
+                      <div className="services_text">
+                Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                      </div>
+                    </div>
+
+                    <div className="services_item">
+                      <img className="services_img" src={book} alt="Icon" />
+                      <div className="services_title">SEO</div>
+                      <div className="services_text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                      </div>
+                    </div>
+
+                    <div className="services_item">
+                      <img className="services_img" src={home} alt="Icon" />
+                      <div className="services_title">Css/HTML</div>
+                      <div className="services_text">
+                Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                      </div>
+                    </div>
+
+                    <div className="services_item">
+                      <img className="services_img" src={image} alt="Icon" />
+                      <div className="services_title">Digital</div>
+                      <div className="services_text">
+                Dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section className="section section--devices" id="design">
+                <div className="devices">
+                  <div className="container">
+                    <div className="section_header">
+                      <h3 className="section_subtitle">For all devices</h3>
+                      <h2 className="section_title">Unique design</h2>
+                    </div>
+                    <div className="devices">
+                      <img className="devices_img" src={ipad} alt="Icon" />
+                      <img className="devices_img devices_img--iphone" src={iphone} alt="Icon" />
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <section className="section">
+                <div className="container">
+                  <div className={`section_header ${theme ? 'text_light' : 'text_dark'} `}>
+                    <h3 className="section_subtitle">Service</h3>
+                    <h2 className="section_title">What we do</h2>
+                    <div className="section_text">
+                      <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="what_we_do">
+                    <div className="wedo_item">
+                      <img className="what_we_do_img" src={serv4} alt="Icon" />
+                    </div>
+                    <div className="wedo_item">
+                      <div className="accordion">
+                        <div className="accordion_item active_ac ">
+                          <div className="accordion_header">
+                            <img className="accordion_img" src={picture} alt="Icon" />
+                            <div className="accordion_title">Photography</div>
+                          </div>
+                          <div className="accordion_text ">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
@@ -214,14 +218,14 @@ const HomeView = ({
                     in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
                     sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
                     mollit anim id est laborum.
-                  </div>
-                </div>
-                <div className="accordion_item">
-                  <div className="accordion_header">
-                    <img className="accordion_img" src={equalizer} alt="Icon" />
-                    <div className="accordion_title">Creativity</div>
-                  </div>
-                  <div className="accordion_text">
+                          </div>
+                        </div>
+                        <div className="accordion_item">
+                          <div className="accordion_header">
+                            <img className="accordion_img" src={equalizer} alt="Icon" />
+                            <div className="accordion_title">Creativity</div>
+                          </div>
+                          <div className="accordion_text">
                     Lorem ipsum dolor sit amet, consectetur
                     adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
                     magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -229,14 +233,14 @@ const HomeView = ({
                     dolor in reprehenderit in voluptate velit esse cillum dolore eu
                     fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                     sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </div>
+                          </div>
 
-                </div>
-                <div className="accordion_item">
-                  <div className="accordion_header">
-                    <img className="accordion_img" src={bullseye} alt="Icon" />
-                    <div className="accordion_title">Web Design</div>
-                    <div className="accordion_text">
+                        </div>
+                        <div className="accordion_item">
+                          <div className="accordion_header">
+                            <img className="accordion_img" src={bullseye} alt="Icon" />
+                            <div className="accordion_title">Web Design</div>
+                            <div className="accordion_text">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -244,41 +248,43 @@ const HomeView = ({
                         reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
                         pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
                         culpa qui officia deserunt mollit anim id est laborum.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
+              <section>
+                <Weather
+                  weather={weather}
+                  handleChange={handleChange}
+                  getWeather={getWeather}
+                  mycity={mycity}
+                  temp={temp}
+                  city={city}
+                  country={country}
+                  humidity={humidity}
+                  pressure={pressure}
+                  sunrise={sunrise}
+                  sunset={sunset}
+                  error={error}
+                />
+              </section>
+              <section className="section">
+
+                <div className="map">
+                  <div className="map_content">
+                    <img src={pin} alt="Icon" />
+                    <h2 className="section_title">Open map</h2>
+                  </div>
+                </div>
+              </section>
             </div>
-          </div>
-        </div>
-      </section>
-      <section>
-        <Weather
-          weather={weather}
-          handleChange={handleChange}
-          getWeather={getWeather}
-          mycity={mycity}
-          temp={temp}
-          city={city}
-          country={country}
-          humidity={humidity}
-          pressure={pressure}
-          sunrise={sunrise}
-          sunset={sunset}
-          error={error}
-        />
-      </section>
-      <section className="section">
-
-        <div className="map">
-          <div className="map_content">
-            <img src={pin} alt="Icon" />
-            <h2 className="section_title">Open map</h2>
-          </div>
-        </div>
-      </section>
-    </div>
-
+          )
+        }
+    </ThemeColorContext.Consumer>
   );
 };
 HomeView.propTypes = {

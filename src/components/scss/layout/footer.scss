@@ -3,23 +3,21 @@
 .footer{
   margin: 0;
 }
-.footer p{
+.footer_title{
   font-family: 'Kaushan Script', cursive;
-  color: #333333;
   font-size: 18px;
   text-align: center;
 }
-.footer h2, a{
+.footer_subtitle{
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
-  color: #333333;
   font-size: 20px;
   text-align: center;
 }
 .footer_link{
   display: block;
 }
-.footer img{
+.footer_img{
   width: 64px;
   height: 64px;
 }

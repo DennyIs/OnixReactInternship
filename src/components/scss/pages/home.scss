@@ -20,6 +20,19 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
+.bg_dark{
+  background: #333;
+}
+.bg_light{
+  background: #fff;
+}
+.text_dark{
+  color: #f5f5f5;
+}
+.text_light{
+  color: #333;
+}
+
 /*Slider*/
 
 .intro_slider{
@@ -72,13 +85,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .section_subtitle{
   font-family: 'Kaushan Script', cursive;
-  color: #333333;
   font-size: 24px;
 }
 .section_title{
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
-  color: #333333;
   font-size: 30px;
 }
 .section_title:after{
@@ -91,7 +102,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .section_text{
   font-family: 'Roboto', sans-serif;
-  color: #999;
   font-size: 15px;
 }
 
