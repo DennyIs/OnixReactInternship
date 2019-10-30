@@ -5,58 +5,52 @@ import '../../scss/layout/footer.scss';
 import ThemeColorContext from '../../../context/ThemeContext';
 
 
-const Footer = ({
-  footerText1, authorName, footerText, footerHref, github, githubHref
-}) => {
+const Footer = ({ footerData }) => {
   return (
     <ThemeColorContext.Consumer>
       {
           ({ theme }) => (
-            <footer className={`section_header ${theme ? 'text_light' : 'text_dark'} `}>
-              <div className="container">
-                <div className="footer_title">
-                  {footerText1}
+            footerData.map((
+              {
+                footerText1, authorName, footerText, footerHref, github, githubHref
+              }
+            ) => (
+              <footer className={`section_header ${theme ? 'text_light' : 'text_dark'} `} key={footerText1}>
+                <div className="container">
+                  <div className="footer_title">
+                    {footerText1}
+                  </div>
+                  <div className="footer_subtitle">
+                    {authorName}
+                  </div>
+                  <div className="footer_title">
+                    {footerText}
+                  </div>
+                  <div className="footer_subtitle">
+                    <a className="footer_link" href={footerHref}>Layout</a>
+                  </div>
+                  <div className="footer_title">
+                    {github}
+                  </div>
+                  <div className="footer_subtitle">
+                    <a className="footer_link" href={githubHref}>
+                      <img className="footer_img" src={octocat} alt="Icon" />
+                    </a>
+                  </div>
                 </div>
-                <div className="footer_subtitle">
-                  {authorName}
-                </div>
-                <div className="footer_title">
-                  {footerText}
-                </div>
-                <div className="footer_subtitle">
-                  <a className="footer_link" href={footerHref}>Layout</a>
-                </div>
-                <div className="footer_title">
-                  {github}
-                </div>
-                <div className="footer_subtitle">
-                  <a className="footer_link" href={githubHref}>
-                    <img className="footer_img" src={octocat} alt="Icon" />
-                  </a>
-                </div>
-              </div>
-            </footer>
-          )
+              </footer>
+            )))
         }
     </ThemeColorContext.Consumer>
   );
 };
 Footer.propTypes = {
-  footerText1: PropTypes.string,
-  authorName: PropTypes.string,
-  footerText: PropTypes.string,
-  footerHref: PropTypes.string,
-  github: PropTypes.string,
-  githubHref: PropTypes.string,
+  footerData: PropTypes.arrayOf(
+    PropTypes.objectOf(
+      PropTypes.string
+    )
+  ).isRequired,
 
 };
-Footer.defaultProps = {
-  footerText1: '',
-  authorName: '',
-  footerText: '',
-  footerHref: '',
-  github: '',
-  githubHref: '',
 
-};
 export default Footer;

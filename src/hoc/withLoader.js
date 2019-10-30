@@ -33,7 +33,7 @@ const LoaderHOC = (WrappedComponent) => {
                     </div>
                     <div className="weather_form">
                       <div className="form_item">
-                        <Input onInputChange={handleChange} id="mycity" className="fields" placeholder="Город" />
+                        <Input onInputChange={handleChange} id="myCity" className="fields" placeholder="Город" />
                         <Button className="button--table" title="Показать погоду" onButtonClick={getWeather} />
                       </div>
                     </div>

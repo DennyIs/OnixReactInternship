@@ -23,10 +23,10 @@ import ThemeColorContext from '../../../context/ThemeContext';
 
 
 const HomeView = ({
-  sortFunction, bubbleSort, updateEvent, insertElement, deleteElement,
+  sortFunction, bubbleSort, onEventChange, onDataChange, insertElement, deleteElement,
   handleImageLoaded, handleImageError, handleMarked, onDragStart, onDragOver,
   onDragEnd, getWeather, handleChange, events, imgSrc, imageStatus,
-  mycity, hasError, show, weather, temp, city, country, humidity, pressure, sunrise, sunset, error
+  myCity, hasError, show, temp, city, country, humidity, pressure, sunrise, sunset,
 }) => {
   return (
     <ThemeColorContext.Consumer>
@@ -50,7 +50,8 @@ const HomeView = ({
                   <Biography
                     sortFunction={sortFunction}
                     bubbleSort={bubbleSort}
-                    updateEvent={updateEvent}
+                    onEventChange={onEventChange}
+                    onDataChange={onDataChange}
                     insertElement={insertElement}
                     deleteElement={deleteElement}
                     handleImageLoaded={handleImageLoaded}
@@ -258,10 +259,6 @@ const HomeView = ({
               </section>
               <section>
                 <Weather
-                  weather={weather}
-                  handleChange={handleChange}
-                  getWeather={getWeather}
-                  mycity={mycity}
                   temp={temp}
                   city={city}
                   country={country}
@@ -269,7 +266,10 @@ const HomeView = ({
                   pressure={pressure}
                   sunrise={sunrise}
                   sunset={sunset}
-                  error={error}
+                  handleChange={handleChange}
+                  getWeather={getWeather}
+                  myCity={myCity}
+
                 />
               </section>
               <section className="section">
@@ -288,10 +288,10 @@ const HomeView = ({
   );
 };
 HomeView.propTypes = {
-  mycity: PropTypes.string,
   sortFunction: PropTypes.func,
   bubbleSort: PropTypes.func,
-  updateEvent: PropTypes.func,
+  onEventChange: PropTypes.func,
+  onDataChange: PropTypes.func,
   insertElement: PropTypes.func,
   deleteElement: PropTypes.func,
   handleImageLoaded: PropTypes.func,
@@ -306,13 +306,13 @@ HomeView.propTypes = {
       event: PropTypes.string
     })
   ),
+  myCity: PropTypes.string,
   imgSrc: PropTypes.string,
   imageStatus: PropTypes.string,
   hasError: PropTypes.bool,
   show: PropTypes.bool,
   handleChange: PropTypes.func,
   getWeather: PropTypes.func,
-  weather: PropTypes.objectOf(PropTypes.object),
   temp: PropTypes.number,
   city: PropTypes.string,
   country: PropTypes.string,
@@ -320,13 +320,13 @@ HomeView.propTypes = {
   pressure: PropTypes.number,
   sunrise: PropTypes.string,
   sunset: PropTypes.string,
-  error: PropTypes.string,
 
 };
 HomeView.defaultProps = {
   sortFunction: undefined,
   bubbleSort: undefined,
-  updateEvent: undefined,
+  onEventChange: undefined,
+  onDataChange: undefined,
   insertElement: undefined,
   deleteElement: undefined,
   handleImageLoaded: undefined,
@@ -342,9 +342,7 @@ HomeView.defaultProps = {
   show: '',
   handleChange: undefined,
   getWeather: undefined,
-
-  mycity: '',
-  weather: undefined,
+  myCity: '',
   temp: undefined,
   city: undefined,
   country: undefined,
@@ -352,7 +350,5 @@ HomeView.defaultProps = {
   pressure: undefined,
   sunrise: undefined,
   sunset: undefined,
-  error: undefined,
-
 };
 export default HomeView;

@@ -5,7 +5,7 @@ import LoaderHOC from '../../../../hoc/withLoader';
 
 
 const Weather = ({
-  temp, city, country, humidity, pressure, sunrise, sunset
+  city, country, temp, humidity, pressure, sunrise, sunset 
 }) => {
   return (
     <>
@@ -76,6 +76,7 @@ const Weather = ({
     </>
   );
 };
+
 Weather.propTypes = {
   temp: PropTypes.number,
   city: PropTypes.string,
@@ -94,6 +95,7 @@ Weather.defaultProps = {
   sunrise: undefined,
   sunset: undefined,
 };
+
 
 const Loder = LoaderHOC(Weather);
 export default Loder;

@@ -7,7 +7,7 @@ import Input from '../../../elements/Input/Input';
 
 
 const Biography = ({
-  sortFunction, bubbleSort, updateEvent, insertElement, deleteElement,
+  sortFunction, bubbleSort, onEventChange, onDataChange, insertElement, deleteElement,
   handleImageLoaded, handleImageError, handleMarked, onDragStart, onDragOver,
   onDragEnd, events, imgSrc, imageStatus, hasError, show
 }) => {
@@ -73,8 +73,8 @@ const Biography = ({
         <div className="container">
           <div>
             <div className="form_item">
-              <Input id="insertDate" onInputChange={updateEvent} className="fields" placeholder="Date" />
-              <Input id="insertEvent" onInputChange={updateEvent} className="fields" placeholder="Event" />
+              <Input id="insertDate" onInputChange={onDataChange} className="fields" placeholder="Date" />
+              <Input id="insertEvent" onInputChange={onEventChange} className="fields" placeholder="Event" />
             </div>
             <div className="btn_item">
               <Button className="button--table" title="Добавить" onButtonClick={insertElement} />
@@ -111,7 +111,8 @@ Biography.propTypes = {
   })),
   sortFunction: PropTypes.func,
   bubbleSort: PropTypes.func,
-  updateEvent: PropTypes.func,
+  onEventChange: PropTypes.func,
+  onDataChange: PropTypes.func,
   insertElement: PropTypes.func,
   deleteElement: PropTypes.func,
   handleImageLoaded: PropTypes.func,
@@ -128,7 +129,8 @@ Biography.propTypes = {
 Biography.defaultProps = {
   sortFunction: undefined,
   bubbleSort: undefined,
-  updateEvent: undefined,
+  onEventChange: undefined,
+  onDataChange: undefined,
   insertElement: undefined,
   deleteElement: undefined,
   handleImageLoaded: undefined,
